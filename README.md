@@ -1,6 +1,8 @@
 # DIU Result Viewer 🎓
 
-[![Live Website](https://img.shields.io/badge/%F0%9F%94%97-Live_Website-2E7D32?style=for-the-badge)](https://lunarlumos.github.io/result.diu/)
+## 🚀 Try It Now
+
+**[https://lunarlumos.github.io/result.diu/](https://lunarlumos.github.io/result.diu/)**
 
 
 A fast, reliable alternative for Daffodil International University students to access their academic results during high-traffic periods.
@@ -30,9 +32,6 @@ I created this solution to address three key pain points:
   <img src="https://raw.githubusercontent.com/LunarLumos/result.diu/main/images/2.png" width="85%" alt="Results View">
 </div>
 
-## 🚀 Try It Now
-
-**[https://lunarlumos.github.io/result.diu/](https://lunarlumos.github.io/result.diu/)**
 
 ## 🛠️ How It Works
 
