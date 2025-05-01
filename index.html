@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daffodil International University Result Viewer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2E7D32; /* DIU Green */
+      --secondary-color: #1B5E20;
+      --accent-color: #4CAF50;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --success-color: #4cc9f0;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background-color: #f5f7ff;
+      margin: 0;
+      padding: 0;
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      color: #6c757d;
+      font-size: 16px;
+    }
+    
+    .info, .semester, .summary {
+      margin-bottom: 30px;
+    }
+    
+    .info p, .summary p {
+      margin: 8px 0;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .info-card {
+      background: var(--light-color);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .info-card strong {
+      color: var(--primary-color);
+    }
+    
+    .performance-card {
+      background: #f1f9ff;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--success-color);
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .performance-item {
+      text-align: center;
+      padding: 0 15px;
+    }
+    
+    .performance-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .performance-label {
+      font-size: 14px;
+      color: #6c757d;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #e9ecef;
+    }
+    
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    tr:hover {
+      background-color: #f1f3ff;
+    }
+    
+    .semester-header {
+      margin-bottom: 10px;
+    }
+    
+    .semester-title {
+      color: var(--secondary-color);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .semester-cgpa {
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary-color);
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .error-message {
+      color: #dc3545;
+      background-color: #f8d7da;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid #dc3545;
+      margin-bottom: 20px;
+      display: none;
+    }
+    
+    .search-container {
+      background: white;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+    }
+    
+    .search-box {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .search-box input {
+      flex: 1;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .search-box button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .search-box button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6c757d;
+      font-size: 14px;
+      margin-top: 40px;
+      background-color: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .footer-main {
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+    
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 10px 0;
+    }
+    
+    .footer-social a {
+      color: var(--primary-color);
+      font-size: 18px;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .footer-copyright {
+      font-size: 13px;
+    }
+    
+    .footer-divider {
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+      margin: 10px auto;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 20px;
+      }
+      
+      .search-box {
+        flex-direction: column;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .performance-card {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2><i class="fas fa-graduation-cap"></i> Daffodil International University Result Viewer</h2>
+      <p class="subtitle">Access your academic records and performance summary</p>
+    </header>
+
+    <div class="search-container">
+      <div class="error-message" id="errorMessage"></div>
+      <div class="search-box">
+        <input type="text" id="studentIdInput" placeholder="Enter Student ID (e.g., 242-16-025)" />
+        <button onclick="loadResult()">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+    </div>
+
+    <div class="loading" id="loadingIndicator">
+      <div class="spinner"></div>
+      <p>Loading student data...</p>
+    </div>
+
+    <div class="info" id="studentInfo"></div>
+    <div id="semesters"></div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-main">
+        Developed by LunarLumos
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-social">
+        <a href="https://facebook.com/lunarlumos" target="_blank" title="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://github.com/lunarlumos" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="footer-copyright">
+        <i class="far fa-copyright"></i> 2025 All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function loadResult() {
+      const studentId = document.getElementById("studentIdInput").value.trim();
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      const errorMessage = document.getElementById("errorMessage");
+      
+      // Hide previous error and show loading
+      errorMessage.style.display = 'none';
+      loadingIndicator.style.display = 'block';
+      
+      if (!studentId) {
+        showError("Please enter a Student ID.");
+        loadingIndicator.style.display = 'none';
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://cf-next-hono.primal7987.workers.dev/api/result/full?id=${studentId}`);
+        
+        if (!res.ok) {
+          throw new Error("Student not found or server error");
+        }
+        
+        const data = await res.json();
+
+        const info = data.studentInfoObj;
+        const semesters = data.semesterResults;
+
+        // Fill student info
+        const infoDiv = document.getElementById("studentInfo");
+        const semestersDiv = document.getElementById("semesters");
+        infoDiv.innerHTML = '';
+        semestersDiv.innerHTML = '';
+
+        let totalCgpa = 0;
+        let semesterCount = 0;
+        let totalCredits = 0;
+
+        // First calculate totals
+        semesters.forEach((semester) => {
+          if (semester.length === 0) return;
+
+          semesterCount++;
+          const semCgpa = semester[0].cgpa;
+          totalCgpa += semCgpa;
+          
+          // Calculate semester credits
+          let semesterCredits = 0;
+          semester.forEach(course => {
+            semesterCredits += parseFloat(course.totalCredit);
+          });
+          totalCredits += semesterCredits;
+        });
+
+        const avgCgpa = semesterCount > 0 ? (totalCgpa / semesterCount).toFixed(2) : 0;
+
+        infoDiv.innerHTML = `
+          <div class="info-grid">
+            <div class="info-card">
+              <p><strong><i class="fas fa-user"></i> Name:</strong> ${info.name}</p>
+              <p><strong><i class="fas fa-id-card"></i> Student ID:</strong> ${studentId}</p>
+            </div>
+            <div class="info-card">
+              <p><strong><i class="fas fa-graduation-cap"></i> Program:</strong> ${info.program}</p>
+              <p><strong><i class="fas fa-building"></i> Department:</strong> ${info.department}</p>
+            </div>
+            <div class="info-card">
+              <p><strong><i class="fas fa-university"></i> Faculty:</strong> ${info.faculty}</p>
+              <p><strong><i class="fas fa-calendar-alt"></i> Batch:</strong> ${info.batch}</p>
+            </div>
+            <div class="info-card">
+              <p><strong><i class="fas fa-clock"></i> Shift:</strong> ${info.shift}</p>
+              <p><strong><i class="fas fa-map-marker-alt"></i> Campus:</strong> ${info.campus}</p>
+            </div>
+            <div class="performance-card">
+              <div class="performance-item">
+                <div class="performance-value">${totalCredits.toFixed(2)}</div>
+                <div class="performance-label">Total Credits</div>
+              </div>
+              <div class="performance-item">
+                <div class="performance-value">${avgCgpa}</div>
+                <div class="performance-label">Average CGPA</div>
+              </div>
+              <div class="performance-item">
+                <div class="performance-value">${semesterCount}</div>
+                <div class="performance-label">Semesters</div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Now display semester details in the exact requested format
+        semesters.forEach((semester) => {
+          if (semester.length === 0) return;
+
+          const semName = `${semester[0].semesterName} ${semester[0].semesterYear}`;
+          const semCgpa = semester[0].cgpa.toFixed(2);
+
+          let coursesHtml = `
+            <div class="semester">
+              <div class="semester-header">
+                <div class="semester-title">${semName}</div>
+                <div class="semester-cgpa">CGPA: ${semCgpa}</div>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Course Code</th>
+                    <th>Title</th>
+                    <th>Credit</th>
+                    <th>Grade</th>
+                    <th>Point</th>
+                  </tr>
+                </thead>
+                <tbody>
+          `;
+
+          semester.forEach((course) => {
+            coursesHtml += `
+              <tr>
+                <td>${course.customCourseId}</td>
+                <td>${course.courseTitle}</td>
+                <td>${course.totalCredit}</td>
+                <td>${course.gradeLetter}</td>
+                <td>${course.pointEquivalent}</td>
+              </tr>
+            `;
+          });
+
+          coursesHtml += `</tbody></table></div>`;
+          semestersDiv.innerHTML += coursesHtml;
+        });
+
+      } catch (error) {
+        showError("Failed to load result. Please check the Student ID and try again.");
+        console.error(error);
+      } finally {
+        loadingIndicator.style.display = 'none';
+      }
+    }
+    
+    function showError(message) {
+      const errorMessage = document.getElementById("errorMessage");
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+    }
+    
+    // Allow searching by pressing Enter key
+    document.getElementById("studentIdInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        loadResult();
+      }
+    });
+  </script>
+</body>
+</html>
