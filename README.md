@@ -2,6 +2,13 @@
 
 A clean, responsive web application for Daffodil International University students to view their academic results.
 
+## ❓ Why I Built This
+
+During result publication days, Daffodil International University's official website often crashes due to high traffic, leaving students frustrated. I created this lightweight alternative to:
+- Provide **instant access** to results when the main portal is down  
+- Display results in a **cleaner, more organized** format  
+- Calculate **automated CGPA summaries** (not available on the official portal)  
+
 ## ✨ Features
 
 - **Instant Result Lookup** by Student ID
@@ -14,21 +21,14 @@ A clean, responsive web application for Daffodil International University studen
 
 ## 📸 Screenshots
 
-![Search Interface](screenshots/search.png)  
+![Search Interface](https://raw.githubusercontent.com/LunarLumos/result.diu/refs/heads/main/images/1.png)  
 *Search by Student ID*
 
-![Results View](screenshots/results.png)  
+![Results View](https://raw.githubusercontent.com/LunarLumos/result.diu/refs/heads/main/images/2.png)  
 *Detailed semester results with CGPA*
 
-![Mobile View](screenshots/mobile.png)  
-*Fully responsive design*
 
-## 💻 Technology Stack
 
-- HTML5, CSS3, JavaScript
-- Fetch API for data retrieval
-- Font Awesome icons
-- CSS Grid/Flexbox layout
 
 ## 🙏 Credits
 
@@ -36,3 +36,5 @@ A clean, responsive web application for Daffodil International University studen
 - **Social**: 
   [<img src="https://img.icons8.com/fluency/24/000000/facebook-new.png" width="20"/> Facebook](https://facebook.com/lunarlumos) 
   [<img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" width="20"/> GitHub](https://github.com/lunarlumos)
+
+                                                              Made with ❤️ for DIU students                                                              
