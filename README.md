@@ -10,10 +10,13 @@ I created this solution to address three key pain points:
 1. **Availability**: Works when the official portal is down
 2. **Clarity**: Presents data more cleanly than the original interface
 3. **Insights**: Provides calculations (CGPA, credits) not available officially
-4. 
-## 🚀 Try It Now
+   
 
+## 🚀 Try It Now
 **[    Click To visit ](https://lunarlumos.github.io/result.diu/)**
+
+**📊 Total Visitors:** ![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=LunarLumos.result.diu&label=Total%20Visitors)
+
 
 ## ✨ Key Features
 
