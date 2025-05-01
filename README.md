@@ -1,40 +1,57 @@
-# DIU Result Viewer
+# DIU Result Viewer 🎓
 
-A clean, responsive web application for Daffodil International University students to view their academic results.
+[![Live Website](https://img.shields.io/badge/%F0%9F%94%97-Live_Website-2E7D32?style=for-the-badge)](https://lunarlumos.github.io/result.diu/)
+
+
+A fast, reliable alternative for Daffodil International University students to access their academic results during high-traffic periods.
 
 ## ❓ Why I Built This
 
-During result publication days, Daffodil International University's official website often crashes due to high traffic, leaving students frustrated. I created this lightweight alternative to:
-- Provide **instant access** to results when the main portal is down  
-- Display results in a **cleaner, more organized** format  
-- Calculate **automated CGPA summaries** (not available on the official portal)  
+> "Every result day, the same story - the university portal crashes under heavy load."
 
-## ✨ Features
+I created this solution to address three key pain points:
+1. **Availability**: Works when the official portal is down
+2. **Clarity**: Presents data more cleanly than the original interface
+3. **Insights**: Provides calculations (CGPA, credits) not available officially
 
-- **Instant Result Lookup** by Student ID
-- **Semester-wise Breakdown** of all completed courses
-- **Automatic CGPA Calculation** for each semester
-- **Total Credits** accumulation across all semesters
-- **Performance Summary** with average CGPA
-- **Mobile-friendly** responsive design
-- **Fast Loading** with minimal dependencies
+## ✨ Key Features
 
-## 📸 Screenshots
+| Feature | Benefit |
+|---------|---------|
+| 📱 Mobile-first design | Access results from any device |
+| ⚡ Instant calculations | Automatic CGPA and credit totals |
+| 🗂️ Organized semester view | All your results in one place |
+| 🔒 Privacy focused | No data stored on external servers |
 
-![Search Interface](https://raw.githubusercontent.com/LunarLumos/result.diu/refs/heads/main/images/1.png)  
-*Search by Student ID*
+## 🖼️ Screenshots
 
-![Results View](https://raw.githubusercontent.com/LunarLumos/result.diu/refs/heads/main/images/2.png)  
-*Detailed semester results with CGPA*
+<div align="center">
+  <img src="https://raw.githubusercontent.com/LunarLumos/result.diu/main/images/1.png" width="85%" alt="Search Interface"><br>
+  <img src="https://raw.githubusercontent.com/LunarLumos/result.diu/main/images/2.png" width="85%" alt="Results View">
+</div>
 
+## 🚀 Try It Now
 
+**[https://lunarlumos.github.io/result.diu/](https://lunarlumos.github.io/result.diu/)**
 
+## 🛠️ How It Works
 
-## 🙏 Credits
+1. Student enters ID (e.g., `242-16-009`)
+2. Fetches data from DIU's backend
+3. Calculates and displays:
+   - Semester-wise CGPA
+   - Total completed credits
+   - Overall performance summary
 
-- **Developer**: [LunarLumos](https://github.com/lunarlumos)
-- **Social**: 
-  [<img src="https://img.icons8.com/fluency/24/000000/facebook-new.png" width="20"/> Facebook](https://facebook.com/lunarlumos) 
-  [<img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" width="20"/> GitHub](https://github.com/lunarlumos)
+## 🌟 Credits & Contact
 
-                                                              Made with ❤️ for DIU students                                                              
+**Developer**: LunarLumos  
+**Contribute**: [GitHub Issues](https://github.com/LunarLumos/result.diu/issues)  
+
+Connect with me:  
+[![Facebook](https://img.shields.io/badge/-Facebook-1877F2?style=flat&logo=facebook&logoColor=white)](https://facebook.com/lunarlumos)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/lunarlumos)
+
+---
+
+<p align="center">Made with ❤️ for DIU students</p>
