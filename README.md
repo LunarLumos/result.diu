@@ -1,10 +1,5 @@
 # DIU Result Viewer 🎓
 
-## 🚀 Try It Now
-
-**[https://lunarlumos.github.io/result.diu/](https://lunarlumos.github.io/result.diu/)**
-
-
 A fast, reliable alternative for Daffodil International University students to access their academic results during high-traffic periods.
 
 ## ❓ Why I Built This
@@ -15,6 +10,10 @@ I created this solution to address three key pain points:
 1. **Availability**: Works when the official portal is down
 2. **Clarity**: Presents data more cleanly than the original interface
 3. **Insights**: Provides calculations (CGPA, credits) not available officially
+4. 
+## 🚀 Try It Now
+
+**[https://lunarlumos.github.io/result.diu/](https://lunarlumos.github.io/result.diu/)**
 
 ## ✨ Key Features
 
